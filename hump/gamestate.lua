@@ -43,21 +43,22 @@ current = {
 	quit             = __ERROR__,
 }
 
-local function new()
+local function new(methods)
+	methods = methods or {}
 	return {
-		init             = __NULL__,
-		enter            = __NULL__,
-		leave            = __NULL__,
-		update           = __NULL__,
-		draw             = __NULL__,
-		focus            = __NULL__,
-		keyreleased      = __NULL__,
-		keypressed       = __NULL__,
-		mousepressed     = __NULL__,
-		mousereleased    = __NULL__,
-		joystickpressed  = __NULL__,
-		joystickreleased = __NULL__,
-		quit             = __NULL__,
+		init             = methods.init or __NULL__,
+		enter            = methods.enter or __NULL__,
+		leave            = methods.leave or __NULL__,
+		update           = methods.update or __NULL__,
+		draw             = methods.draw or __NULL__,
+		focus            = methods.focus or __NULL__,
+		keyreleased      = methods.keyreleased or __NULL__,
+		keypressed       = methods.keypressed or __NULL__,
+		mousepressed     = methods.mousepressed or __NULL__,
+		mousereleased    = methods.mousereleased or __NULL__,
+		joystickpressed  = methods.joystickpressed or __NULL__,
+		joystickreleased = methods.joystickreleased or __NULL__,
+		quit             = methods.quit or __NULL__,
 	}
 end
 
