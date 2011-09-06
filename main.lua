@@ -7,7 +7,8 @@ function love.load()
     goo = require 'goo/goo'
     goo:load()
 
-    local levelMaker = require 'level-maker'
+    local u = require 'utils'
+    local levels = require 'levels'
 
     -- Images, colors and fonts ------------------------------------------------
     bgImage = love.graphics.newImage('images/bg.png')
@@ -40,23 +41,9 @@ function love.load()
     boardX = (conf.screenWidth - boardWidth) / 2
     boardY = 60
 
-    levelMatrix = {}
+    initialLevelMatrix, solution = levels.newLevel(boardRows, boardCols)
 
-    for row = 0, (boardRows - 1) do
-        -- The table is full of `nils` which are false,
-        -- so we don't have to initialize each cell
-        levelMatrix[row] = {}
-    end
-
-    initialLevelMatrix, solution = levelMaker.newLevel(boardRows, boardCols)
-
-    levelMatrix = {}
-    for k, v in pairs(initialLevelMatrix) do
-        levelMatrix[k] = {}
-        for k2, v2 in pairs(v) do
-            levelMatrix[k][k2] = v2
-        end
-    end
+    levelMatrix = u.copyTable(initialLevelMatrix)
 
     -- Game states -------------------------------------------------------------
     local MenuBtn = require 'menu-btn'
@@ -196,8 +183,7 @@ function love.load()
                 y = btnY,
                 text = 'Restart level',
                 onLeftClick = function (self, button)
-                    -- FIXME: Have to make a copy here too, else subsequent restarts don't work
-                    levelMatrix = initialLevelMatrix
+                    levelMatrix = u.copyTable(initialLevelMatrix)
                     gstates.switch(playState)
                 end,
             }
@@ -207,7 +193,8 @@ function love.load()
                 y = btnY,
                 text = 'New game',
                 onLeftClick = function (self, button)
-                    levelMatrix, solution = levelMaker.newLevel(boardRows, boardCols)
+                    initialLevelMatrix, solution = levels.newLevel(boardRows, boardCols)
+                    levelMatrix = u.copyTable(initialLevelMatrix)
                     gstates.switch(playState)
                 end,
             }

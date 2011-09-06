@@ -5,9 +5,9 @@ require 'io'
 -- Read http://mathworld.wolfram.com/LightsOutPuzzle.html for the mathematics
 -- involved in making lightbox levels
 
-local levelMaker = {}
+local levels = {}
 
-function levelMaker.newLevel(rows, cols)
+function levels.newLevel(rows, cols)
 
     math.randomseed(os.time())
 
@@ -76,4 +76,4 @@ function levelMaker.newLevel(rows, cols)
 
 end
 
-return levelMaker
+return levels
