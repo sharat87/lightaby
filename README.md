@@ -7,9 +7,9 @@ to have all squares become gray. You can click on a box to toggle its state, but
 doing so will also toggle the state of the vertically and horizontally adjacent
 squares.
 
-    [1]: http://en.wikipedia.org/wiki/Lights_Out_(game)
+[1]: http://en.wikipedia.org/wiki/Lights_Out_(game)
 
-![Lightaby game screenshot](game-shot.png)
+![Lightaby game screenshot](https://bitbucket.org/sharat87/lightaby/raw/tip/game-shot.png)
 
 # Licence
 
